@@ -1,0 +1,288 @@
+import java.math.BigDecimal;
+import java.util.Currency;
+import java.util.Scanner;
+
+public class payroll {
+
+public static void main(String[] args) {
+
+    String Password;
+    int days;
+    double sss;
+    double salary;
+    double tax;
+    double grosssalary;
+    double loan;
+    int hhr; 
+    double hot;
+    double rate;
+    double rxd;
+    String position;
+    
+   
+    Scanner scan = new Scanner(System.in);
+while(true){
+    System.out.println("Type A if Admin, Type E if Employee: ");
+    String username = scan.nextLine();
+    
+   Password = "22"; 
+    
+ if (username.equals("A")) {
+    
+    System.out.println("Enter Password : ");
+    String password = scan.next();
+    
+    if(password.equals(Password)){
+    
+        System.out.println("Access Granted! Welcome!");
+        
+System.out.print("Name : ");
+String name = scan.next();
+
+//Currency Sysmbols
+
+Currency cur = Currency.getInstance("PHP");
+String sym = cur.getSymbol();
+
+// If Statements If, Else If, Else
+
+    System.out.println("Position:");
+   position = scan.next();
+
+   System.out.println("rate per hour");
+   rate = scan.nextDouble();
+   System.out.println("");
+   System.out.println("Total: "+sym +""+ rate);
+   System.out.println("\n");
+  
+  System.out.println("rate of overtime in %");
+   double pr = scan.nextDouble();
+   double per = pr * 0.01;
+   System.out.println("");
+   
+   
+    System.out.println("Number of Days spent in Work : ");
+    days = scan.nextInt();
+    
+  rxd = (rate  * 8) * days;
+  System.out.println(" [ "+rate +" x 8 hours x " +days + " days ]");
+  
+    System.out.println("");
+    System.out.println("Total: "+sym+"" + rxd);
+    System.out.println("");
+    
+    System.out.println("Number of Hours spent in OT : ");
+    hot = scan.nextDouble();
+  
+  grosssalary = ((rate  * 8) * days )+( hot*(rate*per));
+  System.out.println("");
+  System.out.println( " [ " + rxd + " + ( "+hot+" (hours of ot) x (" + rate+"(rate) x " + per+"(rate of ot))) ]");
+  
+    System.out.println("");
+    System.out.println("Total: "+sym+"" + grosssalary);
+    System.out.println("");
+    
+    
+    System.out.println(" SSS: ");
+    sss = scan.nextDouble();
+    
+    System.out.println( " [ " + grosssalary + " - " + sss + " (sss) ]");
+    
+    System.out.println("");
+ double ss = ((rate  * 8) * days )+( hot*(rate*per)) - sss;
+ 
+    System.out.println("");
+    System.out.println("");
+    System.out.println("Total: "+sym+"" + ss);
+    System.out.println("");
+    
+    System.out.println("How much is your loan?");
+    loan = scan.nextDouble();
+    System.out.println("\n");
+   System.out.println(" [ "+ss + " - " + loan + " (sss)]");
+   System.out.println("\n");
+ double l = grosssalary- sss- loan;
+    System.out.println("");
+    System.out.println("[ "+grosssalary+"(salary)" +" - "+ sss+"(sss)"+" - "+loan+"(loan) ]" );
+    System.out.println("");
+    System.out.println("Total: "+sym+"" + l);
+    System.out.println("");
+    
+
+ System.out.println("Tax in %");
+   double tx = scan.nextDouble();
+ 
+
+    tax = grosssalary * (tx * 0.01);
+    salary = grosssalary - tax - sss - loan ;
+    System.out.println(" [ "+ l + " - " + tax + " (tax)]");
+    System.out.println("");
+    System.out.println("Total: "+sym+"" + tax);
+
+    System.out.println("\n \n \n \n \n");
+
+
+    System.out.println("Name: " + name);
+    System.out.println("Position: " + position);
+    System.out.println("Days: " + days);
+    System.out.println("overtime: " + hot + "hrs");
+    System.out.println("SSS: "+sym+" " + sss);
+    System.out.println("Tax: "+sym+" " + tax);
+    System.out.println("Loan: "+sym+" " + loan);
+    System.out.println("Rate of OT : " + per);
+    System.out.println("Rate: "+sym+" " + rate);
+    System.out.println("Gross Salary: "+sym+" " + grosssalary);
+    System.out.println(" ");
+    System.out.println("Salary: "+sym+" " + salary);
+
+break;
+  }
+  else {
+     System.out.println("Invalid");
+     continue;
+  }
+}
+ if (username.equals("E")) {
+       System.out.print("Name : ");
+String name = scan.nextLine();
+
+while(true){
+System.out.print("Type P if Permanent, Type C if Contractual \nLetter : ");
+String input = scan.nextLine();
+
+//Variables
+
+Double rph = 200.00;
+Double per = 1.5;
+
+//Currency Sysmbols
+
+Currency cur = Currency.getInstance("PHP");
+String sym = cur.getSymbol();
+
+// If Statements If, Else If, Else
+
+if (input.equals("P")) {
+
+    System.out.println("How many days have you worked? ");
+    days = scan.nextInt();
+    
+    double rp = (rph  * 8) * days;
+    System.out.println("[ 200 rph x  8 hours" +" x " +days+"days]");
+    System.out.println("");
+    System.out.println("TOTAL:" + rp);
+    
+    System.out.println("How many Hours did you worked Overtime?");
+    hot = scan.nextDouble();
+    
+    double ot = rp + (hot *(rph*per));
+    System.out.println("["+rp+" + "+"("+hot+"(hours of ot) x ("+rph+" (rate) x "+per+" (rate of ot)"+"]" );
+    System.out.println("");
+    System.out.println("TOTAL:" + ot);
+    System.out.println("");
+    
+    System.out.println("How much is your SSS?");
+    sss = scan.nextDouble();
+    
+    double ss = ot - sss;
+     System.out.println("["+ot+" - "+sss+" (sss)"+"]" );
+    System.out.println("");
+    System.out.println("TOTAL:" + ss);
+    System.out.println("");
+    
+    System.out.println("How much is your loan?");
+    loan = scan.nextDouble();
+    
+    
+    grosssalary = ((rph  * 8) * days )+( hot*(rph*per));
+    tax = grosssalary * 0.1;
+    salary = grosssalary - tax - sss - loan ;
+    double lo = ss - loan - tax;
+     System.out.println("["+ss+" - "+loan+" (loan)"+" - "+tax+" (tax)"+"]" );
+    System.out.println("");
+    System.out.println("TOTAL:" + lo);
+    System.out.println("");
+
+    
+grosssalary = ((rph  * 8) * days )+( hot*(rph*per));
+    tax = grosssalary * 0.1;
+    salary = grosssalary - tax - sss - loan ;
+
+    System.out.println("\n \n \n \n \n");
+
+
+    System.out.println("Name: " + name);
+    System.out.println("Days: " + days);
+    System.out.println("overtime: " + hot + "hrs");
+    System.out.println("SSS: "+sym+" " + sss);
+    System.out.println("Tax: "+sym+" " + tax);
+    System.out.println("Loan: "+sym+" " + loan);
+    System.out.println("RPH: "+sym+" " + rph);
+    System.out.println("Gross Salary: "+sym+" " + grosssalary);
+    System.out.println("");
+    System.out.println("Salary: "+sym+" " + salary);
+break;
+}
+
+else if (input.equals("C")){
+
+System.out.println("agreed payment: " );
+double apay = scan.nextDouble();
+
+System.out.println("agreed days of work: " );
+int adays = scan.nextInt();
+
+System.out.println("Number of Days spent in Work : ");
+double dy = scan.nextInt();
+
+System.out.println("Number of Hours spent in OT : ");
+hot = scan.nextDouble();
+
+System.out.println("How much is your loan?");
+loan = scan.nextDouble();
+
+
+//compute
+
+double rs = (apay / adays);
+grosssalary = (rs * dy) + hot*(rs*per);
+    tax = grosssalary  * 0.1;
+    salary = grosssalary - tax - loan;
+   
+
+
+
+System.out.println("\n \n \n \n \n");
+
+    System.out.println("Name: " + name);
+    System.out.println("Agreed Payment in "+ adays +" days: " + apay );
+    System.out.println("Rate per Day: "+sym+ " " + rs);
+    System.out.println("rate of overtime:"  + per);
+    System.out.println("Days of Work: " + dy);
+    System.out.println("Tax: "+sym+" " + tax);
+    System.out.println("Loan: "+sym+" " + loan);
+    System.out.println("Gross Wages: "+sym+" " + grosssalary);
+    System.out.println("");
+    System.out.println("Wages: "+sym+" " + salary);
+    
+
+break;
+}
+
+else {
+    System.out.println("invalid input");
+    System.out.println("\n \n");
+continue;
+}
+}
+break;
+  }
+  else{
+  	System.out.println("Invalid input");
+  	System.out.println(" ");
+  	
+  continue;
+  	}
+}
+}
+}
